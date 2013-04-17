@@ -8,7 +8,7 @@
   <meta name="author" content="">
 
   <!-- Le styles -->
-  <link href="../assets/css/bootstrap.css" rel="stylesheet">
+  <link href="/assets/css/bootstrap.css" rel="stylesheet">
   <style type="text/css">
       body {
           padding-top: 20px;
@@ -57,12 +57,6 @@
   <script src="../assets/js/html5shiv.js"></script>
   <![endif]-->
 
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="../assets/ico/favicon.png">
 </head>
 
 <body>
@@ -79,22 +73,30 @@
 
   <hr>
 
-  <div class="jumbotron">
+  <div class="hero-unit">
     <h1>My Blog</h1>
     <br>
-    <p class="lead">This is a Blog application using Ruby on Rails. Bootstarp is used as it's UI design. Thank you for visiting.</p>
-    <%= link_to 'New Post', new_post_path %>
+
+    <p class="lead">This is a Blog application using Ruby on Rails. Bootstarp is used as it's UI design. Thank you for
+      visiting.</p>
+
+
+    <%= link_to 'New Post', new_post_path, :class => "btn btn-info" %>
+
   </div>
 
 
   <hr>
 
   <div class="row-fluid marketing">
-    <div class="span6">
 
+    <div class="span12">
       <% @posts.each do |post| %>
 
-          <h3>  <%= link_to post.title, post %> </h3>
+          <fieldset>
+          <legend>
+            <%= link_to post.title, post %>
+          </legend>
 
           <p style="color:dodgerblue">
             <%= time_ago_in_words post.created_at %> ago.
@@ -103,9 +105,11 @@
           <p>
             <%= post.text %>
           </p>
-      <% end %>
+          </fieldset>
 
+      <% end %>
     </div>
+
 
   </div>
 
@@ -114,22 +118,6 @@
     <p>&copy; Venus Izadi 2013</p>
   </div>
 
-  <!-- Le javascript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="../assets/javascripts/js/jquery.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-transition.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-alert.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-modal.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-dropdown.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-scrollspy.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-tab.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-tooltip.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-popover.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-button.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-collapse.js"></script>
-  <script src="../assets/javascripts/js/bootstrap-carousel.js"></script>
-  <script src="../assets/javascripts  /js/bootstrap-typeahead.js"></script>
 </div>
 </body>
 </html>

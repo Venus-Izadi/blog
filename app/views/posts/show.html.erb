@@ -1,28 +1,126 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Template &middot; Bootstrap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<h1>
-  <%= @post.title %>
-</h1>
+  <!-- Le styles -->
+  <link href="../assets/stylesheets/css/bootstrap.css" rel="stylesheet">
+  <style type="text/css">
+      body {
+          padding-top: 20px;
+          padding-bottom: 40px;
+      }
 
-<p>
-  <%= @post.text %>
-</p>
+          /* Custom container */
+      .container-narrow {
+          margin: 0 auto;
+          max-width: 700px;
+      }
 
-<h2>Comments </h2>
+      .container-narrow > hr {
+          margin: 30px 0;
+      }
 
-<% @post.comments.each do |comment| %>
-    <p> <%= comment.text %></p>
-    <p><%= time_ago_in_words comment.created_at %> ago. </p>
-    <p><%= link_to 'Delete Comment', [@post, comment], :method => :delete, :confirm => 'Are you sure?' %> </p>
-<% end %>
+          /* Main marketing message and sign up button */
+      .jumbotron {
+          margin: 60px 0;
+          text-align: center;
+      }
 
-<%= form_for [@post, @post.comments.build] do |f| %>
-    <p>
-      <%= f.text_area :text, :size => '40*10' %>
-    </p>
-    <%= f.submit 'Submit Comment' %>
-<% end %>
+      .jumbotron h1 {
+          font-size: 72px;
+          line-height: 1;
+      }
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Delete', @post, :method => :delete, :confirm => 'Are you sure?' %> |
-<%= link_to 'Back', posts_path %>
+      .jumbotron .btn {
+          font-size: 21px;
+          padding: 14px 24px;
+      }
+
+          /* Supporting marketing content */
+      .marketing {
+          margin: 60px 0;
+      }
+
+      .marketing p + h4 {
+          margin-top: 28px;
+      }
+  </style>
+  <link href="../assets/stylesheet/css/bootstrap-responsive.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="../assets/javascripts/js/html5shiv.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="offset2 span8">
+      <p id="notice"><%= notice %></p>
+
+      <article>
+
+        <fieldset>
+          <legend>
+            <%= @post.title %>
+          </legend>
+
+          <p>
+            <%= @post.text %>
+          </p>
+
+
+        </fieldset>
+      </article>
+      <br>
+      <%= link_to 'Delete', @post, :method => :delete, :confirm => 'Are you sure you want to delete this post?', :class => "btn btn-warning" %>
+      |
+      <%= link_to "Edit", edit_post_path(@post), :class => "btn btn-success" %> |
+
+      <%= link_to 'Back', posts_path, :class => "btn" %>
+      <br>
+      <br>
+      <fieldset>
+        <legend>Comments</legend>
+
+        <% @post.comments.each do |comment| %>
+            <br>
+
+            <p> <%= comment.text %></p>
+
+            <p style="color: dodgerblue">
+              <%= time_ago_in_words comment.created_at %> ago.
+            </p>
+
+            <%= link_to 'Delete', [@post, comment], :method => :delete, :confirm => 'Are you sure you want to delete this comment?', :class => "btn" %>
+            <br>
+
+        <% end %>
+      </fieldset>
+
+      <br>
+
+      <fieldset>
+        <legend>Insert your comment:</legend>
+        <%= form_for [@post, @post.comments.build] do |f| %>
+            <p>
+              <%= f.text_area :text, :rows => "7", :class => "input-block-level" %>
+            </p>
+            <%= f.submit " Submit ", :class => "btn btn-success" %>
+        <% end %>
+      </fieldset>
+
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
